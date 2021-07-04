@@ -1,6 +1,7 @@
 # coding: utf-8
 import csv
 from pathlib import Path
+from typing import Text
 
 """Part 1: Automate the Calculations.
 
@@ -82,13 +83,14 @@ print(future_value, remaining_months)
 # YOUR CODE HERE!
 present_value = future_value / (1+0.20/12)**remaining_months
 
+
 # If Present Value represents what the loan is really worth, does it make sense to buy the loan at its cost?
 # @TODO: Write a conditional statement (an if-else statement) to decide if the present value represents the loan's fair value.
 #    If the present value of the loan is greater than or equal to the cost, then print a message that says the loan is worth at least the cost to buy it.
 #    Else, the present value of the loan is less than the loan cost, then print a message that says that the loan is too expensive and not worth the price.
 # YOUR CODE HERE!
 loan_price = loan.get('loan_price')
-if present_value >+ loan_price:
+if present_value >= loan_price:
     print('The loan is worth at least the cost to buy it.')
 else:
     print('The loan is too expensive and not worth the price.')
@@ -124,7 +126,7 @@ def net_present_value(future_value, remaining_months, annual_discount_rate):
 #    Use an `annual_discount_rate` of 0.2 for this new loan calculation.
 # YOUR CODE HERE!
 present_value = net_present_value(new_loan['future_value'], new_loan['remaining_months'], 0.2)
-print(f"The present value of the loan is: {present_value}")
+print(f"The present value of the loan is: {present_value:.2f}")
 
 
 """Part 4: Conditionally filter lists of loans.
@@ -173,10 +175,11 @@ inexpensive_loans = []
 for x in loans:
     loan_price = x.get('loan_price')
     if loan_price <= 500: 
-        inexpensive_loans.append(loan_price)
+        inexpensive_loans.append(x)
 # @TODO: Print the `inexpensive_loans` list
 # YOUR CODE HERE!
 print(inexpensive_loans)
+
 
 """Part 5: Save the results.
 
@@ -202,9 +205,11 @@ output_path = Path("inexpensive_loans.csv")
 # @TODO: Use the csv library and `csv.writer` to write the header row
 # and each row of `loan.values()` from the `inexpensive_loans` list.
 # YOUR CODE HERE!
-with open(output_path, 'w') as csvfile:
+with open(output_path, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
     csvwriter.writerow(header)
-    csvwriter.writerow(inexpensive_loans)
+    for row in inexpensive_loans:
+            csvwriter.writerow(row.values())
+   
     
 
