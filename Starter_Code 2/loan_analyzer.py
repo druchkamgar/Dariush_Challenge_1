@@ -1,7 +1,7 @@
 # coding: utf-8
 import csv
 from pathlib import Path
-from typing import Text
+from typing import KeysView, Text
 
 """Part 1: Automate the Calculations.
 
@@ -179,6 +179,14 @@ for x in loans:
 # @TODO: Print the `inexpensive_loans` list
 # YOUR CODE HERE!
 print(inexpensive_loans)
+
+a = 0
+for row in loans:
+    header1 = row.keys()
+    a+=1
+    if a ==1:
+        break
+
 
 
 """Part 5: Save the results.
