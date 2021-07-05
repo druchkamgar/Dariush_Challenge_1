@@ -22,6 +22,7 @@ loan_costs = [500, 600, 200, 1000, 450]
 total_number_of_loans = len(loan_costs)
 print(total_number_of_loans)
 
+
 # What is the total of all loans?
 # @TODO: Use the `sum` function to calculate the total of all loans in the list.
 # Print the total value of the loans
